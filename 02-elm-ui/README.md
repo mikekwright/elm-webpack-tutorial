@@ -225,7 +225,9 @@ couple of components.
 
 ## References
 
-
+[Real World Elm - Form Validation](http://engineering.truqu.com/2015/09/25/real-world-elm-part-2.html)    
+[Elm Architecture Tutorial](https://github.com/evancz/elm-architecture-tutorial)     
+[Todo - Elm Style](https://github.com/evancz/elm-todomvc)     
 
 
 

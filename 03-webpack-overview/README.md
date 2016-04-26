@@ -187,4 +187,5 @@ We will also discuss some of the philosophies that are in webpack, namely:
 
 * [Less CSS Processor](http://lesscss.org)  
 * [Webpack Start](https://webpack.github.io/docs)    
+* [Elm Webpack Starter](https://github.com/moarwick/elm-webpack-starter)    
 
