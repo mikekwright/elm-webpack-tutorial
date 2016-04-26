@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# vi: ft=sh
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+docker run --rm -it -p 8080:8080 -v $SCRIPT_DIR:/src mikewright/elm-webpack:STEP-4

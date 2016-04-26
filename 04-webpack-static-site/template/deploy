@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# vi: ft=sh
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+DEPLOY_DIR=$SCRIPT_DIR/gh-deploy
+REPO_URL=$(git remote -v | grep origin | tail -n 1 | awk '{print $2}')
+
+if [[ ! -d $DEPLOY_DIR ]]; then
+  git clone $REPO_URL $DEPLOY_DIR
+  pushd $DEPLOY_DIR >> /dev/null
+  git checkout gh-pages
+  if [[ $? -ne 0 ]]; then
+    git checkout -b gh-pages
+  fi
+  popd >> /dev/null
+fi
+
+rm -rf $DEPLOY_DIR/*
+cp -r dist/* $DEPLOY_DIR/
+
+pushd $DEPLOY_DIR >> /dev/null
+git add .
+git commit -m "Updated the deploy using deploy script"
+git push origin gh-pages --force
+popd >> /dev/null
+
+

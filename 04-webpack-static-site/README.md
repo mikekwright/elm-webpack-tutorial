@@ -25,13 +25,25 @@ a branch named `gh-pages`, you can then access the site by navigating to the url
 
 2. Clone the repo and create the scripts we will use for publishing the compiles pages.
 
-        // deploy
+3. Start our docker container that we will use for our project, create skeleton and build
+
+        docker run -it -p 8080:8080 -v $PWD:/src mikewright/elm-webpack:STEP-4
+        setup-project
+        npm install
+        elm make
+        npm run build
+
+4. Exit the container and run deploy
       
+        ./deploy
+
+5. Navigate to your site to see the completed result
+        
 
 ### Notes
-
 
 
 ## References
 
 [Github - Creating Project Pages](https://help.github.com/articles/creating-project-pages-manually/)    
+
