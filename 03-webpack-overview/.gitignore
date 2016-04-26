@@ -2,3 +2,7 @@ elm-package.json
 Main.elm
 elm.js
 index.html
+package.json
+src
+webpack.config.js
+dist

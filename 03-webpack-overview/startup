@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# vi: ft=sh
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+rm -rf /src/node_modules
+mkdir -p /tmp/node_modules
+ln -s /tmp/node_modules /src/node_modules
+/bin/bash
+rm -rf /src/node_modules
