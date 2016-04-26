@@ -39,7 +39,11 @@ We will also discuss some of the philosophies that are in webpack, namely:
             "elm-hot-loader": "0.2.0",
             "elm-webpack-loader": "2.0.0",
             "webpack": "1.13.0",
-            "webpack-dev-server": "1.14.1"
+            "webpack-dev-server": "1.14.1",
+            "css-loader": "0.23.1",
+            "style-loader": "0.13.1",
+            "less": "2.6.1",
+            "less-loader": "2.2.3"
           }
         }
 
@@ -114,20 +118,73 @@ We will also discuss some of the philosophies that are in webpack, namely:
 
 6. At this point we can now use webpack to build our application for us
 
+        # Static file
         webpack
-        
-        # Note, this next command will open the index.html in your browser
         open dist/index.html
 
-7. Lets make our app a little bit nicer with some css and style
+        # Dev Server
+        webpack-dev-server --host 0.0.0.0 --content-base dist/ --inline
+
+7. To make this a little easier, lets add a script to run this for us
+
+        // package.json
+
+        "scripts": {
+          "build": "webpack",
+          "dev": "webpack-dev-server --host 0.0.0.0 --content-base dist/ --inline"
+        }
+
+        npm run dev
+
+8. Lets make our app a little bit nicer with some css and style
 
         // src/Main.elm
-         
+        import Html exposing (Html, text, div, span)
+        import Html.Attributes exposing (id, class)
 
+        main : Html
+        main =
+          div [ class "elm-body" ] 
+          [
+            div [ id "content-div", class "content" ]
+            [ 
+              text "Hello pretty webpack!!!"
+            ]
+          ]
 
+        // src/less/style.less
+        @color: mix(#ff0000, #0000ff, 50%);
+        @text-color: contrast(@color);
+
+        .elm-body {
+          width: 1024px;
+          margin: auto;
+          background-color: @color;
+        }
+
+        .content {
+          text-align: center;
+          color: @text-color;
+          padding: 10px;
+        }
+
+        // src/index.js
+        require('./less/style.less');
+
+        // webpack.config.js
+        loaders: 
+          ...
+          {
+            test: /\.less$/,
+            exclude: [/elm-stuff/, /node_modules/],
+            loaders: 'style!css!less'
+          }
 
 ### Notes
 
 
 ## References
+
+* [Less CSS Processor](http://lesscss.org)  
+* [Webpack Start](https://webpack.github.io/docs)    
 
